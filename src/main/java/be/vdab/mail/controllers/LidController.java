@@ -56,4 +56,12 @@ private final LidService lidService;
     public String nietGeregistreerd() {
         return "nietgeregistreerd";}
 
+
+    @GetMapping("{id}")
+    public ModelAndView info(@PathVariable long id){
+        var modelAndView=new ModelAndView("lidinfo");
+        lidService.findById(id).ifPresent(lid-> modelAndView.addObject(lid));
+    return modelAndView;
+    }
+
 }
